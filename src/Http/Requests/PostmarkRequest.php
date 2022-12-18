@@ -11,7 +11,7 @@ class PostmarkRequest extends FormRequest
     public function validator()
     {
         return Validator::make($this->all(), [
-            'RawEmail' => 'required',
+            'From' => 'required',
         ]);
     }
 
@@ -20,6 +20,6 @@ class PostmarkRequest extends FormRequest
         /** @var InboundEmail $modelClass */
         $modelClass = config('mailbox.model');
 
-        return $modelClass::fromMessage($this->get('RawEmail'));
+        return $modelClass::fromMessage($this->get('From'));
     }
 }
